@@ -1,13 +1,16 @@
-report.xml
+------------------------------------------------------------------------------------------------
+# Create a folder name: reports
+# Create a file in this folder: report.xml
+------------------------------------------------------------------------------------------------
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
     <report
             id="report_estate_card"
-            model="estate.property"
+            model="estate.property" (model name)
             string="PDF Report"
-            name="estate.report_estate"
+            name="estate.report_estate" (app name)
             file="estate.report_estate"
             report_type="qweb-pdf"/>
 
@@ -15,7 +18,8 @@ report.xml
 
 
 ------------------------------------------------------------------------------------------------
-estate_card.xml
+Create xml file for desing report: estate_card.xml
+------------------------------------------------------------------------------------------------
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
@@ -67,6 +71,7 @@ estate_card.xml
 
 ------------------------------------------------------------------------------------------------
 __manifest__.py
+------------------------------------------------------------------------------------------------
 
 
  'data': [
