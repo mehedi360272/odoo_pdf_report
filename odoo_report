@@ -7,13 +7,12 @@
 <odoo>
 
     <report
-            id="report_estate_card"
-            model="estate.property" (model name)
-            string="PDF Report"
-            name="estate.report_estate" (app name)
-            file="estate.report_estate"
+            id="application_report"
+            model="uniclub.application"
+            string="Print Application"
+            name="uniclub_application.report"
+            file="uniclub_application.report"
             report_type="qweb-pdf"/>
-
 </odoo>
 
 
@@ -23,45 +22,17 @@ Create xml file for desing report: estate_card.xml
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="report_estate">
+    <template id="report">
         <t t-call="web.html_container">
-            <t t-call="web.internal_layout">
-                <t t-foreach="docs" t-as="doc">
-                    <h2>
-                        <img src='estate/static/description/icon.png' style="max-height: 45px;"/>
-                        Estate Card
-                    </h2>
-                    <div>
-                        name:
-                        <t t-esc="doc['name']"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2>Application Form</h2>
+                        <p> Name:
+                            <span t-field="o.name"/>
+                        </p>
                     </div>
-                    <div>
-                        best price:
-                        <t t-esc="doc['best_price']"/>
-                    </div>
-                    <img t-att-src="image_data_uri(doc.image)" width="250" heigth="250"/>
-                    <table class="table table-condensed table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr t-as="offer" t-foreach="doc.offer_ids">
-                                <td>
-                                    <span t-field="offer.partner_id"/>
-                                </td>
-                                <td>
-                                    <span t-field="offer.price"/>
-                                </td>
-                                <td>
-                                    <span t-field="offer.status"/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </t>
             </t>
         </t>
@@ -76,6 +47,7 @@ __manifest__.py
 
  'data': [
         ...,
-        'reports/estate_card.xml',
-        'reports/report.xml'
+        # report
+        'reports/report.xml',
+        'reports/application_report.xml',
     ],
