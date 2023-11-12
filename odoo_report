@@ -1,0 +1,76 @@
+report.xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report
+            id="report_estate_card"
+            model="estate.property"
+            string="PDF Report"
+            name="estate.report_estate"
+            file="estate.report_estate"
+            report_type="qweb-pdf"/>
+
+</odoo>
+
+
+------------------------------------------------------------------------------------------------
+estate_card.xml
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_estate">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <h2>
+                        <img src='estate/static/description/icon.png' style="max-height: 45px;"/>
+                        Estate Card
+                    </h2>
+                    <div>
+                        name:
+                        <t t-esc="doc['name']"/>
+                    </div>
+                    <div>
+                        best price:
+                        <t t-esc="doc['best_price']"/>
+                    </div>
+                    <img t-att-src="image_data_uri(doc.image)" width="250" heigth="250"/>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-as="offer" t-foreach="doc.offer_ids">
+                                <td>
+                                    <span t-field="offer.partner_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="offer.price"/>
+                                </td>
+                                <td>
+                                    <span t-field="offer.status"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+------------------------------------------------------------------------------------------------
+__manifest__.py
+
+
+ 'data': [
+        ...,
+        'reports/estate_card.xml',
+        'reports/report.xml'
+    ],
