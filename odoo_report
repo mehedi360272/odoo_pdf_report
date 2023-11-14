@@ -32,6 +32,9 @@ Create xml file for desing report: estate_card.xml
                         <p> Name:
                             <span t-field="o.name"/>
                         </p>
+                        # image from static folder    
+                        <img class="img" src="/your_module/static/src/img/your_image.png" style="height:45%;width:100%;" />
+                        # image from Database
                         <img t-attf-src="data:image/png;base64,{{pat.photo}}" class="img-fluid" alt="Profile Picture"/>
                     </div>
                 </t>
