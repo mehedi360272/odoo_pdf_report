@@ -24,7 +24,7 @@ Create xml file for desing report: estate_card.xml
 <odoo>
     <template id="report">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
+            <t t-foreach="docs" t-as="pat">
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="oe_structure"/>
@@ -32,6 +32,7 @@ Create xml file for desing report: estate_card.xml
                         <p> Name:
                             <span t-field="o.name"/>
                         </p>
+                        <img t-attf-src="data:image/png;base64,{{pat.photo}}" class="img-fluid" alt="Profile Picture"/>
                     </div>
                 </t>
             </t>
